@@ -1,0 +1,64 @@
+#!/bin/bash
+
+smartPath=`pwd`
+#加载公共smart函数库
+. ./shell/smartfunc/smartfunc
+
+#加载base函数库
+. ./shell/smartfunc/basefunc
+
+#加载项目函数库
+. ./shell/smartfunc/govfunc
+. ./shell/smartfunc/protalfunc
+. ./shell/smartfunc/apifunc
+. ./shell/smartfunc/reversefunc
+
+case $1 in
+'install')
+  installBasement
+  installApi
+  installGov
+  installPortal
+  startReverse
+  ;;
+'start')
+  startBasement
+  startApi
+  startGov
+  startPortal
+  startReverse
+  ;;
+'stop')
+  stopBasement
+  stopApi
+  stopGov
+  stopPortal
+  stopReverse
+  ;;
+'clear')
+  clearApi
+  clearGov
+  clearPortal
+  ;;
+'upgrade')
+  clearApi
+  clearGov
+  clearPortal
+  clearReverse
+  startApi
+  startGov
+  startPortal
+  startReverse
+  ;;
+'update-portal')
+  updatePortal
+  ;;
+'update-api')
+  updateApi
+  ;;
+'update-gov')
+  updateGov
+  ;;
+*)
+  menu
+esac

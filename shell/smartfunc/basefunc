@@ -1,0 +1,53 @@
+#!/bin/bash
+
+function installBasement {
+  installMysql
+  installMongo
+  installRabbitmq
+  installFluentd
+}
+
+function installMysql {
+  createFolder 'basement/mysql'
+  cp shell/composefiles/mysql.yml basement/mysql/docker-compose.yml
+  cd basement/mysql && docker-compose up -d && cd $smartPath
+}
+
+function installMongo {
+  createFolder 'basement/mongo'  
+  cp shell/composefiles/mongo.yml basement/mongo/docker-compose.yml
+  cd basement/mongo && docker-compose up -d && cd $smartPath
+}
+
+function installRabbitmq {
+  createFolder 'basement/rabbitmq'
+  cp shell/composefiles/rabbitmq.yml basement/rabbitmq/docker-compose.yml
+  cd basement/rabbitmq && docker-compose up -d && cd $smartPath
+}
+
+function installFluentd {
+  createFolder 'basement/fluentd'
+  cp shell/composefiles/fluentd.yml basement/fluentd/docker-compose.yml
+  cp shell/config/fluentd.conf basement/fluentd/
+  cd basement/fluentd && docker-compose up -d && cd $smartPath
+}
+
+function startBasement {
+  cd basement/mysql && docker-compose up -d && cd $smartPath
+  cd basement/rabbitmq && docker-compose up -d && cd $smartPath
+  cd basement/mongo && docker-compose up -d && cd $smartPath
+  cd basement/fluentd && docker-compose up -d && cd $smartPath
+}
+
+function stopBasement {
+  cd basement/mysql && docker-compose stop && cd $smartPath
+  cd basement/rabbitmq && docker-compose stop && cd $smartPath
+  cd basement/mongo && docker-compose stop && cd $smartPath
+  cd basement/fluentd && docker-compose stop && cd $smartPath
+}
+
+function createFolder {
+  if [ ! -d "./$1" ]; then
+    mkdir -p $1
+  fi
+}

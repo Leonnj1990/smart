@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function installPortal {
+  if [ ! -d "./px-frontend-portal" ]; then
+    cd $smartPath && git clone https://code.aliyun.com/pingxiang/px-frontend-portal.git
+  fi
+  cd px-frontend-portal && git checkout dev && docker-compose up -d && cp pre-commit .git/hooks && cp pre-push .git/hooks && ./smart composer && cd $smartPath
+}
+
+function startPortal {
+  cd px-frontend-portal && git checkout dev && docker-compose up -d && cd $smartPath
+}
+
+function stopPortal {
+  cd px-frontend-portal && git checkout dev && docker-compose stop && cd $smartPath
+}
+
+function clearPortal {
+  cd px-frontend-portal && git checkout dev && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+}
+
+function updatePortal {
+  cd px-frontend-portal && git checkout dev && git pull origin dev && cd $smartPath
+}

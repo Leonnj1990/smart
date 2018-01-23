@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function installApi {
+  if [ ! -d "./px-backend" ]; then
+    cd $smartPath && cd $smartPath && git clone https://code.aliyun.com/pingxiang/px-backend.git
+  fi
+  cd px-backend && git checkout dev && docker-compose up -d && ./smart composer && cd $smartPath
+}
+
+function startApi {
+  cd px-backend && git checkout dev && docker-compose up -d && cd $smartPath
+}
+
+function stopApi {
+  cd px-backend && git checkout dev && docker-compose stop && cd $smartPath
+}
+
+function clearApi {
+  cd px-backend && git checkout dev && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+}
+
+function updateApi {
+  cd px-backend && git checkout dev && git pull origin dev && cd $smartPath
+}

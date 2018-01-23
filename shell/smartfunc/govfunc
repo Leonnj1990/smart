@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function installGov {
+  if [ ! -d "./px-frontend-gov" ]; then
+    cd $smartPath && git clone https://code.aliyun.com/pingxiang/px-frontend-gov.git
+  fi
+  cd px-frontend-gov && git checkout dev && docker-compose up -d && cp pre-commit .git/hooks && cp pre-push .git/hooks && ./smart composer && cd $smartPath
+}
+
+function startGov {
+  cd px-frontend-gov && git checkout dev && docker-compose up -d && cd $smartPath
+}
+
+function stopGov {
+  cd px-frontend-gov && git checkout dev && docker-compose stop && cd $smartPath
+}
+
+function clearGov {
+  cd px-frontend-gov && git checkout dev && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+}
+
+function updateGov {
+  cd px-frontend-gov && git checkout dev && git pull origin dev && cd $smartPath
+}
