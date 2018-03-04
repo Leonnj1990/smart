@@ -12,6 +12,8 @@ smartPath=`pwd`
 . ./shell/smartfunc/protalfunc
 . ./shell/smartfunc/apifunc
 . ./shell/smartfunc/reversefunc
+. ./shell/smartfunc/sharefunc
+. ./shell/smartfunc/appfunc
 
 case $1 in
 'install')
@@ -19,6 +21,8 @@ case $1 in
   installApi
   installGov
   installPortal
+  installShare
+  installApp
   startReverse
   ;;
 'start')
@@ -26,6 +30,8 @@ case $1 in
   startApi
   startGov
   startPortal
+  startShare
+  startApp
   startReverse
   ;;
 'stop')
@@ -33,21 +39,30 @@ case $1 in
   stopApi
   stopGov
   stopPortal
+  stopApp
+  stopShare
   stopReverse
   ;;
 'clear')
+  clearBasement
   clearApi
   clearGov
+  clearShare
+  clearApp
   clearPortal
   ;;
 'upgrade')
   clearApi
   clearGov
   clearPortal
+  clearApp
+  clearShare
   clearReverse
   startApi
   startGov
   startPortal
+  startApp
+  startShare
   startReverse
   ;;
 'update-portal')
@@ -58,6 +73,9 @@ case $1 in
   ;;
 'update-gov')
   updateGov
+  ;;
+'update-share')
+  updateShare
   ;;
 *)
   menu

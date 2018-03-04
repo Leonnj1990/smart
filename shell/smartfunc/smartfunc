@@ -7,6 +7,8 @@ function menu {
 	echo -e "\t\t\tREAD \t\t\tME\n"
 	echo -e "\t\t绑定hosts文件 portal.pingxiang.com 127.0.0.1 门户网\n"
 	echo -e "\t\t绑定hosts文件 gov.pingxiang.com 127.0.0.1 政务网\n"
+	echo -e "\t\t绑定hosts文件 share.pingxiang.com 127.0.0.1 共享网\n"
+	echo -e "\t\t绑定hosts文件 app.pingxiang.com 127.0.0.1 app\n"
 	echo -e "\t1. install: 安装服务\n"
 	echo -e "\t2. start: 启动服务\n"
 	echo -e "\t3. stop: 关闭服务\n"
@@ -14,5 +16,6 @@ function menu {
   echo -e "\t5. upgrade 更新环境\n"
 	echo -e "\t6. update-portal 更新门户网代码\n"
 	echo -e "\t7. update-gov 更新政务网代码\n"
-	echo -e "\t8. update-api 更新后端接口代码\n"
+	echo -e "\t8. update-share 更新共享代码\n"
+	echo -e "\t9. update-api 更新后端接口代码\n"
 }

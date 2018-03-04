@@ -5,6 +5,8 @@ nginx:
   external_links:
     - "px-gov-nginx"
     - "px-portal-nginx"
+    - "px-share-nginx"
+    - "px-app-nginx"
   volumes:
     - ./conf.d/:/etc/nginx/conf.d/
   container_name: reverse

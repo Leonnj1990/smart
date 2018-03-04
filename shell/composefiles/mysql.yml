@@ -1,5 +1,5 @@
 mysql:
-  image: "registry.cn-hangzhou.aliyuncs.com/marmot/mysql-5.6"
+  image: "registry.cn-hangzhou.aliyuncs.com/marmot/mysql-5.7"
   volumes:
   - ./mysql:/var/lib/mysql
   environment:

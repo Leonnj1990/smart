@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function installApp {
+  if [ ! -d "./px-frontend-app" ]; then
+    cd $smartPath && git clone https://code.aliyun.com/pingxiang/px-frontend-app.git
+  fi
+  cd px-frontend-app && git checkout dev && docker-compose up -d && cp pre-commit .git/hooks && cp pre-push .git/hooks && ./smart composer && cd $smartPath
+}
+
+function startApp {
+  cd px-frontend-app && git checkout dev && docker-compose up -d && cd $smartPath
+}
+
+function stopApp {
+  cd px-frontend-app && git checkout dev && docker-compose stop && cd $smartPath
+}
+
+function clearApp {
+  cd px-frontend-app && git checkout dev && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+}
+
+function updateApp {
+  cd px-frontend-app && git checkout dev && git pull origin dev && cd $smartPath
+}

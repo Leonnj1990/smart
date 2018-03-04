@@ -39,6 +39,13 @@ function startBasement {
   cd basement/fluentd && docker-compose up -d && cd $smartPath
 }
 
+function clearBasement {
+  cd basement/mysql && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+  cd basement/rabbitmq && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+  cd basement/mongo && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+  cd basement/fluentd && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+}
+
 function stopBasement {
   cd basement/mysql && docker-compose stop && cd $smartPath
   cd basement/rabbitmq && docker-compose stop && cd $smartPath
